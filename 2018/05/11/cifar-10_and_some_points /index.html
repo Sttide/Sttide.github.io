@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <title>
         
-        PCA and K-means｜undefined
+        
         
     </title>
 
-    <link rel="canonical" href="http://sttide.github.io/2018/05/05/PCAandK-means/">
+    <link rel="canonical" href="http://sttide.github.io/2018/05/11/cifar-10_and_some_points /">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -137,12 +137,12 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
                 <div class="post-heading">
-                    <h1>PCA and K-means</h1>
+                    <h1></h1>
                     
                     <span class="meta">
                          作者 Chao
                         <span>
-                          日期 2018-05-05
+                          日期 2018-05-11
                          </span>
                     </span>
                     <div class="tags text-center">
@@ -154,7 +154,7 @@
     </div>
     <div class="post-title-haojen">
         <span>
-            PCA and K-means
+            
         </span>
     </div>
 </header>
@@ -165,21 +165,30 @@
         <div class="row">
             <!-- Post Container -->
             <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
-                <p>Welcome to my-blog! This is your very first post. This is made by Hexo (<a href="https://www.cnblogs.com/trista222/p/8017300.html" target="_blank" rel="noopener">Teach</a> for more info). 之前的网站弄Django弄坏了，还得花钱买服务器，没有钱，就只能这样了，share a insteresting story:哈哈哈，今天和琬莹的对话真的是笑死我了好么。</p>
-<h2 id="Share-my-note"><a href="#Share-my-note" class="headerlink" title="Share my note"></a>Share my note</h2><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">hand-writing</span><br></pre></td></tr></table></figure>
-<p><img src="/2018/05/05/PCAandK-means/PCA.jpg" alt="PCA"></p>
-<p><img src="/2018/05/05/PCAandK-means/K-means.jpg" alt="K-means"></p>
+                <h3 id="cifar-10-class"><a href="#cifar-10-class" class="headerlink" title="cifar_10 class"></a>cifar_10 class</h3><p>​    This is a N-Class problem(N=10).<br>    The algorithm is the same as mnist,  conv+fc+softmax,  Lenet net,  two conv layers, two fc layers.</p>
+<p>​    In consideration of the experience which we had gained before, I had a initial view that it is easy to achieve this small project. But soon I was proved wrong. </p>
+<p>​    The first problem I faced was how I inputed data to the neural network. The pics were 3 channels with RGB, not Grey Scale Image. I did not know how to operate. I tried to use <code>io.imread()</code> to directly read the data.（It turned out to be correct.） Later use <code>cv2.imread()</code> to replace. </p>
+<p>​    We had 50000 pics with size of $32<em>32$, the total was $50000</em>32<em>32</em>3$  equaled 146.48M, which can be used. So we generaged an array <code>images</code> to save images messages. And an label was saved like [0,1,0,0,0,0,0,0,0,0]. </p>
+<p>​    During the training process, once I used <code>tf.train.exponential_decay()</code>, the loss was to be <code>nan</code>, and to aviod this stituation or <code>cross_entropy</code>  turned to be zero and others, we let <code>y</code>(the output of the neural network) plus a  infinitesimal <code>1e-8</code>.</p>
+<p>​    N equals 10, so we used <code>list</code> instead of <code>dict</code>. Only lazy.</p>
+<p>​    I marked other places where there had been bugs in sourse codes.</p>
+<p>​    <code>dataset.py</code> provides me a good idea.</p>
+<p>​    Predict auccracy need to be improved, later for more.</p>
+<p>​    <a href="https://github.com/Sttide/cifar_10_class" target="_blank" rel="noopener">source code</a></p>
+<h3 id="Some-points"><a href="#Some-points" class="headerlink" title="Some points"></a>Some points</h3><p>如果出现<code>typora</code>无法打开的情况，执行 <code>sudo apt install gconf2</code> （OS：Ubuntu17.01）</p>
+<p>原谅我这篇翻译的特别Chinglish的英文</p>
+<p>Connect with me for <a href="mailto:sttide@outlook.com" target="_blank" rel="noopener">sttide@outlook.com</a></p>
 
                 <hr>
                 
 
                 <ul class="pager">
                     
-                    <li class="previous">
-                        <a href="/2018/05/11/cifar-10_and_some_points /" data-toggle="tooltip" data-placement="top"
-                           title="">&larr; Previous Post</a>
-                    </li>
                     
+                    <li class="next">
+                        <a href="/2018/05/05/PCAandK-means/" data-toggle="tooltip" data-placement="top"
+                           title="PCA and K-means">Next Post &rarr;</a>
+                    </li>
                     
                 </ul>
 
@@ -194,7 +203,7 @@
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Share-my-note"><span class="toc-text">Share my note</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#cifar-10-class"><span class="toc-text">cifar_10 class</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Some-points"><span class="toc-text">Some points</span></a></li></ol>
                 </div>
             </div>
         </div>
