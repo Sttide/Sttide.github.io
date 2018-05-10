@@ -165,10 +165,12 @@
         <div class="row">
             <!-- Post Container -->
             <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
-                <h3 id="cifar-10-class"><a href="#cifar-10-class" class="headerlink" title="cifar_10 class"></a>cifar_10 class</h3><p>​    This is a N-Class problem(N=10).<br>    The algorithm is the same as mnist,  conv+fc+softmax,  Lenet net,  two conv layers, two fc layers.</p>
+                <figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">title: cifar_10 class and some points</span><br></pre></td></tr></table></figure>
+<h3 id="cifar-10-class"><a href="#cifar-10-class" class="headerlink" title="cifar_10 class"></a>cifar_10 class</h3><p>​    This is a N-Class problem(N=10).</p>
+<p>​    The algorithm is the same as mnist,  conv+fc+softmax,  Lenet net,  two conv layers, two fc layers.</p>
 <p>​    In consideration of the experience which we had gained before, I had a initial view that it is easy to achieve this small project. But soon I was proved wrong. </p>
 <p>​    The first problem I faced was how I inputed data to the neural network. The pics were 3 channels with RGB, not Grey Scale Image. I did not know how to operate. I tried to use <code>io.imread()</code> to directly read the data.（It turned out to be correct.） Later use <code>cv2.imread()</code> to replace. </p>
-<p>​    We had 50000 pics with size of $32<em>32$, the total was $50000</em>32<em>32</em>3$  equaled 146.48M, which can be used. So we generaged an array <code>images</code> to save images messages. And an label was saved like [0,1,0,0,0,0,0,0,0,0]. </p>
+<p>​    We had 50000 pics with size of 32*32, the total was 50000*32*32*3  equaled 146.48M, which can be used. So we generaged an array <code>images</code> to save images messages. And an label was saved like [0,1,0,0,0,0,0,0,0,0]. </p>
 <p>​    During the training process, once I used <code>tf.train.exponential_decay()</code>, the loss was to be <code>nan</code>, and to aviod this stituation or <code>cross_entropy</code>  turned to be zero and others, we let <code>y</code>(the output of the neural network) plus a  infinitesimal <code>1e-8</code>.</p>
 <p>​    N equals 10, so we used <code>list</code> instead of <code>dict</code>. Only lazy.</p>
 <p>​    I marked other places where there had been bugs in sourse codes.</p>
